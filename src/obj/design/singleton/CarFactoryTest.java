@@ -6,6 +6,7 @@ public class CarFactoryTest {
 		CarFactory factory = CarFactory.getInstance();
 		Car mySonata = factory.createCar();
 		Car yourSonata = factory.createCar();
+		char a = 'A';
 		
 		System.out.println(mySonata.getCarNum());     //10001
 		System.out.println(yourSonata.getCarNum());   //10002
