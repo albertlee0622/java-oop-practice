@@ -12,4 +12,8 @@ public class CompleteCalculator extends Calculator{
 		return (b == 0) ? ERROR : a / b; 
 	}
 	
+	public void showInfo() {
+		System.out.println("This is CompleteCalculator");
+	}
+	
 }
