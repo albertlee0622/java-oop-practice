@@ -1,6 +1,6 @@
 package obj.abst.basic;
 
-public class AICar extends Car {
+final public class AICar extends Car {
 
 	@Override
 	public void drive() {
