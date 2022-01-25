@@ -61,12 +61,27 @@ public class AnimalTest {
 			test.moveAnimal(a);
 		}
 		
-//		Eagle ee = (Eagle) e; //down-casting
-//		ee.fly();
+		test.testDownCasting(animalList);
 	}
 	
 	public void moveAnimal(Animal animal) {
 		animal.move();
+	}
+	
+	public void testDownCasting(ArrayList<Animal> list) {
+		for(int i = 0; i < list.size(); i++) {
+			Animal animal = list.get(i);
+			if(animal instanceof Human) {
+				Human human = (Human) animal;
+				human.readBook();
+			} else if(animal instanceof Tiger) {
+				Tiger tiger = (Tiger) animal;
+				tiger.hunt();
+			} else if(animal instanceof Eagle) {
+				Eagle eagle = (Eagle) animal;
+				eagle.fly();
+			}
+		}
 	}
 }
 
