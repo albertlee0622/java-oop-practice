@@ -5,21 +5,22 @@ public class Customer {
 	private int customerId;
 	private String customerName;
 	protected String customerGrade;
-	protected int bonusPoint;
-	protected double discountRate;
+	protected double bonusPoint;
+	protected double bonusRate;
 	
 	public Customer(String customerName) {
-		super();
+//		System.out.println("Customer(String)");
 		Customer.id++;
 		this.customerId = Customer.id;
 		this.customerName = customerName;
 		this.customerGrade = "Silver";
-		this.bonusPoint = 0;
-		this.discountRate = 0.0;
+		this.bonusPoint = 0.0;
+		this.bonusRate = 0.01;
 	}
 	
 	public double calulateFinalprice(double price) {
-		return price * (1 - discountRate);
+		bonusPoint += price * bonusRate;
+		return price;
 	}
 	
 	public String showCustomerInfo() {
@@ -53,12 +54,22 @@ public class Customer {
 		return customerGrade;
 	}
 
-	public int getBonusPoint() {
+	public double getBonusPoint() {
 		return bonusPoint;
 	}
 
-	public void setBonusPoint(int bonusPoint) {
+	public void setBonusPoint(double bonusPoint) {
 		this.bonusPoint = bonusPoint;
 	}
+
+	public double getBonusRate() {
+		return bonusRate;
+	}
+
+	public void setBonusRate(double bonusRate) {
+		this.bonusRate = bonusRate;
+	}
+	
+	
 	
 }
