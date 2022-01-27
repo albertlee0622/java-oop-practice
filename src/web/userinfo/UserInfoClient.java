@@ -27,6 +27,7 @@ public class UserInfoClient {
 			userInfoDao.insertUserInfo(userInfo);
 			userInfoDao.updateUserInfo(userInfo);
 			userInfoDao.deleteUserInfo(userInfo);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
