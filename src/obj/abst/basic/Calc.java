@@ -9,6 +9,7 @@ public interface Calc {
 	int divide(int a, int b);
 	
 	default void description() {
+		myPrivateMethod();
 		System.out.println("arithmetic operations are performed.");
 	}
 	
@@ -17,6 +18,15 @@ public interface Calc {
 		for(int num : arr) {
 			total += num;
 		}
+		sumMessage(total);
 		return total;
+	}
+	
+	private void myPrivateMethod() {
+		System.out.print(this.getClass() + ": ");
+	}
+	
+	private static void sumMessage(int total) {
+		System.out.println("Sum: " + total);
 	}
 }
