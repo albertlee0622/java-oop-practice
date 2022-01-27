@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import domain.userinfo.UserInfo;
 import domain.userinfo.dao.UserInfoDao;
+import domain.userinfo.dao.UserInfoDaoFactory;
 import domain.userinfo.dao.mysql.UserInfoMySqlDao;
 import domain.userinfo.dao.oracle.UserInfoOracleDao;
 
@@ -18,24 +19,16 @@ public class UserInfoClient {
 		Properties prop = new Properties();
 		prop.load(fis);
 		
-		String dbType = prop.getProperty("DBTYPE");
-		
+		String dbType = prop.getProperty("DBTYPE");	
 		UserInfo userInfo = new UserInfo("db_test", "1234", "DB Tester");
 		
-		UserInfoDao userInfoDao = null;
-		
-		if(dbType.equals("ORACLE")) {
-			userInfoDao = new UserInfoOracleDao();
-		} else if(dbType.equals("MYSQL")) {
-			userInfoDao = new UserInfoMySqlDao();
-		} else {
-			System.err.println("db error");
-//			return;
+		try {
+			UserInfoDao userInfoDao = UserInfoDaoFactory.getUserInfoDao(dbType);
+			userInfoDao.insertUserInfo(userInfo);
+			userInfoDao.updateUserInfo(userInfo);
+			userInfoDao.deleteUserInfo(userInfo);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		userInfoDao.insertUserInfo(userInfo);
-		userInfoDao.updateUserInfo(userInfo);
-		userInfoDao.deleteUserInfo(userInfo);
 	}
-
 }
