@@ -1,6 +1,7 @@
 package obj.scheduler;
 
 import java.io.IOException;
+import java.util.Scanner;
 
 public class SchedulerTest {
 
@@ -11,21 +12,15 @@ public class SchedulerTest {
 		System.out.println("L : 대기가 적은 상담원 우선");
 		System.out.println("P : 우선순위가 높은 고객우선 숙련도 높은 상담원");
 		
-		int ch = System.in.read();
-		Scheduler scheduler = null;
+		Scanner sc = new Scanner(System.in);
+		char ch = sc.next().charAt(0);
+		ch = Character.toUpperCase(ch);
 		
-		if ( ch == 'R' || ch =='r') {
-			scheduler = new RoundRobin();
-		}
-		else if ( ch == 'L' || ch =='l') {
-			scheduler = new LeastJob();
-		}
-		else if ( ch == 'P' || ch =='p') {
-			scheduler = new PriorityAllocation();
-		}
-		else {
-			System.out.println("지원되지 않는 기능입니다.");
-			return;
+		Scheduler scheduler = null;
+		try {
+			scheduler = SchedulerFactory.getInstance(ch);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		
 		scheduler.getNextCall();
